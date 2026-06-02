@@ -14,9 +14,9 @@ export function RegistrationSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In static mode, construct a mailto link with the form data
-    const subject = encodeURIComponent(`CSW 2025 Registration - ${formData.event.toUpperCase()}`);
+    const subject = encodeURIComponent(`CSW 2026 Registration - ${formData.event.toUpperCase()}`);
     const body = encodeURIComponent(
-      `Registration for Cyber Security Week 2025\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCollege: ${formData.college}\nEvent Type: ${formData.event}\n\nSubmitted on: ${new Date().toLocaleString()}`
+      `Registration for Cyber Security Week 2026\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCollege: ${formData.college}\nEvent Type: ${formData.event}\n\nSubmitted on: ${new Date().toLocaleString()}`
     );
     window.open(`mailto:${eventInfo.email}?subject=${subject}&body=${body}`, "_blank");
     setIsSubmitted(true);
@@ -30,7 +30,7 @@ export function RegistrationSection() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
           <div className="inline-block px-3 py-1 rounded-full border border-[#00ff41]/30 bg-[#00ff41]/10 mb-4"><span className="text-[#00ff41] text-xs font-mono uppercase tracking-wider">Join Us</span></div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"><span className="text-white">Register </span><span className="text-[#00ff41] glow-green-text font-mono">Now</span></h2>
-          <p className="text-[#94a3b8]">Secure your spot at Cyber Security Week 2025. Limited seats!</p>
+          <p className="text-[#94a3b8]">Secure your spot at Cyber Security Week 2026. Limited seats!</p>
         </motion.div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -82,7 +82,7 @@ export function RegistrationSection() {
               </div>
               <ul className="space-y-2 mb-4 text-sm text-[#94a3b8]">
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#00ff41]" /> Team of 1–4 members</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#00ff41]" /> July 18, 2025 | 9:30 AM – 5:30 PM</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#00ff41]" /> July 18, 2026 | 9:30 AM – 5:30 PM</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#00ff41]" /> Prize pool: ₹25,000+</li>
                 <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-[#00ff41]" /> Jeopardy-style challenges</li>
               </ul>

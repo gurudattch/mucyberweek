@@ -18,7 +18,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <Shield className="w-8 h-8 text-[#00ff41]" />
-              <div><span className="text-lg font-bold text-[#00ff41] font-mono">CSW 2025</span><p className="text-[10px] text-[#94a3b8] font-mono">Cyber Security Week</p></div>
+              <div><span className="text-lg font-bold text-[#00ff41] font-mono">CSW 2026</span><p className="text-[10px] text-[#94a3b8] font-mono">Cyber Security Week</p></div>
             </div>
             <p className="text-sm text-[#94a3b8] leading-relaxed mb-4">A week-long cybersecurity event at Mandsaur University featuring workshops, CTF, expert talks, and more.</p>
             <div className="flex gap-3">

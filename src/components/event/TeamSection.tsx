@@ -28,7 +28,7 @@ export function TeamSection() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
           <div className="inline-block px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 mb-4"><span className="text-purple-400 text-xs font-mono uppercase tracking-wider">The Crew</span></div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"><span className="text-white">Our </span><span className="text-purple-400 font-mono">Organizing Team</span></h2>
-          <p className="text-[#94a3b8]">The dedicated team behind Cyber Security Week 2025</p>
+          <p className="text-[#94a3b8]">The dedicated team behind Cyber Security Week 2026</p>
         </motion.div>
         {faculty.length > 0 && (
           <div className="mb-12">

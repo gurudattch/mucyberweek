@@ -20,7 +20,7 @@ export function AboutSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-center mb-16">
           <div className="inline-block px-3 py-1 rounded-full border border-[#00d4ff]/30 bg-[#00d4ff]/10 mb-4"><span className="text-[#00d4ff] text-xs font-mono uppercase tracking-wider">About the Event</span></div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"><span className="text-white">What is </span><span className="text-[#00ff41] glow-green-text font-mono">CSW 2025</span><span className="text-white">?</span></h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"><span className="text-white">What is </span><span className="text-[#00ff41] glow-green-text font-mono">CSW 2026</span><span className="text-white">?</span></h2>
           <p className="text-[#94a3b8] max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">{eventInfo.description}</p>
         </motion.div>
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -35,7 +35,7 @@ export function AboutSection() {
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-16 glass-card rounded-2xl p-8 text-center border border-[#00d4ff]/10">
           <h3 className="text-xl font-semibold text-white mb-2">Hosted by <span className="text-[#00d4ff] font-mono">Mandsaur University</span></h3>
-          <p className="text-[#94a3b8] text-sm max-w-2xl mx-auto">A premier educational institution in Mandsaur, Madhya Pradesh, committed to academic excellence and innovation. The Department of Computer Science & IT proudly presents Cyber Security Week 2025.</p>
+          <p className="text-[#94a3b8] text-sm max-w-2xl mx-auto">A premier educational institution in Mandsaur, Madhya Pradesh, committed to academic excellence and innovation. The Department of Computer Science & IT proudly presents Cyber Security Week 2026.</p>
         </motion.div>
       </div>
     </section>

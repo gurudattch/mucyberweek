@@ -1,12 +1,12 @@
 // Event data configuration — edit this file to update all site content
 
 export const eventInfo = {
-  name: "Cyber Security Week 2025",
-  shortName: "CSW 2025",
+  name: "Cyber Security Week 2026",
+  shortName: "CSW 2026",
   university: "Mandsaur University, Mandsaur",
   tagline: "Defend. Detect. Dominate.",
-  dates: "July 14 – 20, 2025",
-  startDate: "2025-07-14T09:00:00",
+  dates: "July 14 – 20, 2026",
+  startDate: "2026-07-14T09:00:00",
   venue: "Mandsaur University Campus, Mandsaur, MP",
   description: "A week-long immersive cybersecurity event featuring hands-on workshops, Capture The Flag competitions, expert talks, and networking opportunities. Join us to explore the frontiers of cybersecurity and build the skills to defend the digital world.",
   email: "csw@mandsauruniversity.edu.in",
@@ -115,8 +115,8 @@ export const events = [
 ];
 
 export const ctfInfo = {
-  title: "Capture The Flag 2025", tagline: "Hack. Solve. Conquer.", format: "Jeopardy-Style CTF",
-  teamSize: "1–4 Members", duration: "8 Hours", date: "July 18, 2025", time: "9:30 AM – 5:30 PM", prizePool: "₹25,000+",
+  title: "Capture The Flag 2026", tagline: "Hack. Solve. Conquer.", format: "Jeopardy-Style CTF",
+  teamSize: "1–4 Members", duration: "8 Hours", date: "July 18, 2026", time: "9:30 AM – 5:30 PM", prizePool: "₹25,000+",
   categories: [
     { name: "Web Exploitation", description: "SQL Injection, XSS, Auth Bypass, SSRF and more", icon: "Globe", difficulty: "Easy to Hard" },
     { name: "Cryptography", description: "Classical ciphers, RSA, AES, hash cracking", icon: "Lock", difficulty: "Medium to Hard" },

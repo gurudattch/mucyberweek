@@ -46,7 +46,7 @@ export function HeroSection() {
           </div>
         </motion.div>
         <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
-          <span className="text-[#00ff41] glow-green-text font-mono">Cyber</span> <span className="text-white">Security</span> <span className="text-[#00d4ff] glow-cyan-text">Week</span> <span className="text-white">2025</span>
+          <span className="text-[#00ff41] glow-green-text font-mono">Cyber</span> <span className="text-white">Security</span> <span className="text-[#00d4ff] glow-cyan-text">Week</span> <span className="text-white">2026</span>
         </motion.h1>
         <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-xl sm:text-2xl md:text-3xl font-mono text-[#00ff41]/80 mb-2 tracking-wide">{eventInfo.tagline}</motion.p>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-[#94a3b8] mb-8">
