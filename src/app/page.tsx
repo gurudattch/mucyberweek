@@ -225,7 +225,7 @@ export default function Home() {
         </section>
 
         {/* ═══════════ TIMELINE ═══════════ */}
-        <section id="schedule" className="section-dark relative py-20 sm:py-28">
+        {/* <section id="schedule" className="section-dark relative py-20 sm:py-28">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-12 animate-on-scroll">
               <span className="section-tag" style={{ background: "rgba(255,209,102,0.15)", color: "var(--yellow)" }}>Schedule</span>
@@ -233,17 +233,17 @@ export default function Home() {
                 7-Day <span className="gradient-text-yellow">Timeline</span>
               </h2>
               <p className="font-body text-lg" style={{ color: "rgba(255,255,255,0.6)" }}>Each day packed with learning, competition, and networking</p>
-            </div>
+            </div> */}
             {/* Day Tabs */}
-            <div className="flex gap-2 overflow-x-auto pb-4 mb-8 justify-center flex-wrap">
+            {/* <div className="flex gap-2 overflow-x-auto pb-4 mb-8 justify-center flex-wrap">
               {timeline.map((d) => (
                 <button key={d.day} className={`timeline-tab ${activeDay === d.day ? "active" : ""}`} onClick={() => setActiveDay(d.day)}>
                   Day {d.day}
                 </button>
               ))}
-            </div>
+            </div> */}
             {/* Active Day */}
-            {timeline.filter((d) => d.day === activeDay).map((d) => (
+            /* {timeline.filter((d) => d.day === activeDay).map((d) => (
               <div key={d.day} className="fest-card-dark animate-on-scroll" style={{ maxWidth: 900, margin: "0 auto" }}>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: 16 }}>
                   <span className="font-display text-sm font-bold gradient-text">Day {d.day} — {d.date}</span>
@@ -265,7 +265,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </section>
+        </section> */
 
         {/* ═══════════ EVENTS ═══════════ */}
         <section id="events" className="section-light relative py-20 sm:py-28">
