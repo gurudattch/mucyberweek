@@ -287,8 +287,40 @@ export const teamMembers = [
   }
 ];
 
-export const sponsors = [
-  { id: "1", name: "To Be Announced India", tier: "platinum" as const, description: "Leading cybersecurity solutions provider" },
+export interface Sponsor {
+  id: string;
+  name: string;
+  tier: "platinum" | "gold" | "silver" | "community";
+  description: string;
+  website?: string;
+  logo?: string;
+}
+
+export const sponsors: Sponsor[] = [
+  {
+    id: "1",
+    name: "VibSecuriry",
+    tier: "gold",
+    description: "LLM penetration testing & AI Security",
+    website: "https://vibsecurity.com/",
+    logo: "https://vibsecurity.com/assets/logo-BQssgiAJ.png",
+  },
+  {
+    id: "2",
+    name: "APIsec University",
+    tier: "platinum",
+    description: "API Security Education",
+    website: "https://www.apisecuniversity.com",
+    logo: "/sponsors/apisec.png",
+  },
+  {
+    id: "3",
+    name: "SecOps Group",
+    tier: "gold",
+    description: "Cyber Security Certifications",
+    website: "https://secops.group",
+    logo: "/sponsors/secops.png",
+  },
 ];
 
 export const partners = [
