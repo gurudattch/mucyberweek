@@ -307,11 +307,11 @@ export const sponsors: Sponsor[] = [
   },
   {
     id: "2",
-    name: "APIsec University",
+    name: "Certiwall",
     tier: "platinum",
-    description: "API Security Education",
-    website: "https://www.apisecuniversity.com",
-    logo: "/sponsors/apisec.png",
+    description: "Certificate Management Systems",
+    website: "https://www.certiwall.in",
+    logo: "https://avatars.githubusercontent.com/u/222141003?v=4",
   },
   {
     id: "3",
