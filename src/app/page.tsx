@@ -176,7 +176,7 @@ export default function Home() {
                 <div className="mt-8 flex justify-center animate-float">
                   <div className="relative">
                     <div className="w-32 h-32 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, rgba(255,78,124,0.2), rgba(255,107,53,0.2))", border: "2px solid rgba(255,78,124,0.2)" }}>
-                    <img src="https://meu.edu.in/wp-content/uploads/2026/02/cropped-MU-logo-final-white.png" height="198px;" width="198px;">                    </div>
+                   <img src="https://meu.edu.in/wp-content/uploads/2026/02/cropped-MU-logo-final-white.png" alt="MU Logo" className="w-24 h-24 object-contain"/> </div>
                   </div>
                 </div>
               </div>
