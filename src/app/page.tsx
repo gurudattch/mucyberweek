@@ -76,32 +76,105 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--cream)" }}>
       {/* ═══════════ NAVBAR ═══════════ */}
-      <nav className={`navbar ${navScrolled ? "scrolled" : ""}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between" style={{ height: 68 }}>
-          <a href="#home" className="flex items-center gap-2.5 no-underline" style={{ color: "var(--dark)" }}>
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--pink), var(--orange))" }}>
-                   <img src="https://meu.edu.in/wp-content/uploads/2026/02/cropped-MU-logo-final-white.png" alt="MU Logo" className="w-15 h-15 object-contain"/> </div>
-            </div>
-            <span className="font-display font-bold text-lg tracking-wider">CSW 2026</span>
-          </a>
-          <div className="nav-links-desktop hidden md:flex items-center gap-1">
-            {navLinks.map((l) => (
-              <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
-            ))}
-          </div>
-          <a href="#register" className="btn-primary hidden sm:inline-flex" style={{ padding: "10px 24px", fontSize: "0.85rem" }}>Register Now</a>
-          <button className={`hamburger ${mobileOpen ? "open" : ""}`} onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-            <span /><span /><span />
-          </button>
-        </div>
-        <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
-          {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className="nav-link" onClick={() => setMobileOpen(false)} style={{ display: "block", padding: "12px 16px" }}>{l.label}</a>
-          ))}
-          <a href="#register" className="btn-primary" style={{ marginTop: 8, fontSize: "0.85rem" }}>Register Now</a>
-        </div>
-      </nav>
+   <nav className={`navbar ${navScrolled ? "scrolled" : ""}`}>
+  <div
+    className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+    style={{ height: 68 }}
+  >
+    {/* Logo */}
+    <a
+      href="#home"
+      className="flex items-center gap-3 no-underline"
+      style={{ color: "var(--dark)" }}
+    >
+      <div
+        className="w-12 h-12 flex items-center justify-center"
+      >
+        <img
+          src="https://meu.edu.in/wp-content/uploads/2026/02/cropped-MU-logo-final-white.png"
+          alt="MU Logo"
+          className="w-full h-full object-contain"
+        />
+      </div>
 
+      <span className="font-display font-bold text-lg tracking-wider">
+        CSW 2026
+      </span>
+    </a>
+
+    {/* Desktop Navigation */}
+    <div className="hidden md:flex items-center gap-1">
+      {navLinks.map((l) => (
+        <a
+          key={l.href}
+          href={l.href}
+          className="nav-link"
+        >
+          {l.label}
+        </a>
+      ))}
+    </div>
+
+    {/* Right Section */}
+    <div className="flex items-center gap-3">
+      {/* Desktop Register Button */}
+      <a
+        href="#register"
+        className="btn-primary hidden md:inline-flex"
+        style={{
+          padding: "10px 24px",
+          fontSize: "0.85rem",
+        }}
+      >
+        Register Now
+      </a>
+
+      {/* Mobile Menu Button */}
+      <button
+        type="button"
+        className={`hamburger md:hidden ${
+          mobileOpen ? "open" : ""
+        }`}
+        onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle menu"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile Menu */}
+  <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
+    {navLinks.map((l) => (
+      <a
+        key={l.href}
+        href={l.href}
+        className="nav-link"
+        onClick={() => setMobileOpen(false)}
+        style={{
+          display: "block",
+          padding: "12px 16px",
+        }}
+      >
+        {l.label}
+      </a>
+    ))}
+
+    <a
+      href="#register"
+      className="btn-primary"
+      onClick={() => setMobileOpen(false)}
+      style={{
+        marginTop: 8,
+        fontSize: "0.85rem",
+      }}
+    >
+      Register Now
+    </a>
+  </div>
+</nav>
       <main className="flex-1 relative z-10">
         {/* ═══════════ HERO ═══════════ */}
         <section id="home" className="relative overflow-hidden" style={{ background: "var(--dark)", paddingTop: 68, minHeight: "100vh", display: "flex", alignItems: "center" }}>
