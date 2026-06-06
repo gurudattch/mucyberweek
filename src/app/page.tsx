@@ -275,12 +275,12 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { emoji: "🛡️", title: "Hands-on Workshops", desc: "Practical sessions on ethical hacking, web security, forensics, and more with real-world tools." },
-                { emoji: "🎯", title: "CTF Competition", desc: "Jeopardy-style Capture The Flag across Web, Crypto, Reverse Engineering, Forensics, and OSINT." },
-                { emoji: "👥", title: "Expert Speakers", desc: "Learn from industry leaders, security researchers, and government officials shaping India's cyber defense." },
-                { emoji: "💡", title: "Career Guidance", desc: "Panel discussions and fireside chats on career paths, certifications, and opportunities in cybersecurity." },
-                { emoji: "📖", title: "Knowledge Sharing", desc: "Open forums, write-up presentations, and community networking with fellow enthusiasts." },
-                { emoji: "⚙️", title: "Latest Technologies", desc: "Explore AI in security, cloud security, zero-trust architecture, and cutting-edge threat intelligence." },
+                // { emoji: "🛡️", title: "Hands-on Workshops", desc: "Practical sessions on ethical hacking, web security, forensics, and more with real-world tools." },
+                // { emoji: "🎯", title: "CTF Competition", desc: "Jeopardy-style Capture The Flag across Web, Crypto, Reverse Engineering, Forensics, and OSINT." },
+                // { emoji: "👥", title: "Expert Speakers", desc: "Learn from industry leaders, security researchers, and government officials shaping India's cyber defense." },
+                // { emoji: "💡", title: "Career Guidance", desc: "Panel discussions and fireside chats on career paths, certifications, and opportunities in cybersecurity." },
+                // { emoji: "📖", title: "Knowledge Sharing", desc: "Open forums, write-up presentations, and community networking with fellow enthusiasts." },
+                // { emoji: "⚙️", title: "Latest Technologies", desc: "Explore AI in security, cloud security, zero-trust architecture, and cutting-edge threat intelligence." },
               ].map((f, i) => (
                 <div key={f.title} className={`fest-card animate-on-scroll delay-${i % 4}`}>
                   <div className="text-3xl mb-4">{f.emoji}</div>
