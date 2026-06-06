@@ -300,7 +300,7 @@ export const sponsors: Sponsor[] = [
   {
     id: "1",
     name: "VibSecuriry",
-    tier: "gold",
+    tier: "platinum",
     description: "LLM penetration testing & AI Security",
     website: "https://vibsecurity.com/",
     logo: "https://vibsecurity.com/assets/logo-BQssgiAJ.png",
