@@ -489,32 +489,125 @@ export default function Home() {
         </section>
 
         {/* ═══════════ SPONSORS & PARTNERS ═══════════ */}
-        <section id="sponsors" className="section-light relative py-20 sm:py-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-12 animate-on-scroll">
-              <span className="section-tag" style={{ background: "rgba(255,209,102,0.15)", color: "var(--mango)" }}>Sponsors & Partners</span>
-              <h2 className="font-display font-black mt-4 mb-4" style={{ fontSize: "clamp(2rem, 5vw, 4rem)", color: "var(--dark)" }}>
-                Our <span className="gradient-text-yellow">Sponsors</span>
-              </h2>
-            </div>
-            {(["platinum", "gold", "silver", "community"] as const).map((tier) => {
-              const tc = tierConfig[tier];
-              const tierSponsors = sponsors.filter((s) => s.tier === tier);
-              if (tierSponsors.length === 0) return null;
-              return (
-                <div key={tier} className="mb-10 animate-on-scroll">
-                  <h3 className="font-body text-sm font-bold uppercase tracking-wider mb-4 text-center" style={{ color: "#888" }}>{tc.label} Sponsors</h3>
-                  <div className={`grid gap-4 ${tier === "platinum" ? "grid-cols-1 sm:grid-cols-2" : tier === "gold" ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-2 sm:grid-cols-4"}`}>
-                    {tierSponsors.map((s) => (
-                      <div key={s.id} className={`fest-card ${tc.border} text-center`}>
-                        <h4 className="font-display text-sm font-bold mb-1">{s.name}</h4>
-                        <p className="font-body text-xs" style={{ color: "#888" }}>{s.description}</p>
+   <section
+  id="sponsors"
+  className="section-light relative py-20 sm:py-28"
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+    <div className="text-center mb-12 animate-on-scroll">
+      <span
+        className="section-tag"
+        style={{
+          background: "rgba(255,209,102,0.15)",
+          color: "var(--mango)",
+        }}
+      >
+        Sponsors & Partners
+      </span>
+
+      <h2
+        className="font-display font-black mt-4 mb-4"
+        style={{
+          fontSize: "clamp(2rem, 5vw, 4rem)",
+          color: "var(--dark)",
+        }}
+      >
+        Our <span className="gradient-text-yellow">Sponsors</span>
+      </h2>
+
+      <p
+        className="max-w-2xl mx-auto text-sm sm:text-base"
+        style={{ color: "#888" }}
+      >
+        We are proud to collaborate with industry leaders,
+        cybersecurity organizations, and community partners.
+      </p>
+    </div>
+
+    {(["platinum", "gold", "silver", "community"] as const).map(
+      (tier) => {
+        const tc = tierConfig[tier];
+        const tierSponsors = sponsors.filter(
+          (s) => s.tier === tier
+        );
+
+        if (!tierSponsors.length) return null;
+
+        return (
+          <div
+            key={tier}
+            className="mb-14 animate-on-scroll"
+          >
+            <h3
+              className="font-body text-sm font-bold uppercase tracking-[0.2em] mb-6 text-center"
+              style={{ color: "#888" }}
+            >
+              {tc.label} Sponsors
+            </h3>
+
+            <div
+              className={`grid gap-6 ${
+                tier === "platinum"
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : tier === "gold"
+                  ? "grid-cols-1 sm:grid-cols-3"
+                  : "grid-cols-2 sm:grid-cols-4"
+              }`}
+            >
+              {tierSponsors.map((s) => (
+                <a
+                  key={s.id}
+                  href={s.website || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <div
+                    className={`
+                      fest-card
+                      ${tc.border}
+                      h-full
+                      p-6
+                      text-center
+                      transition-all
+                      duration-300
+                      hover:-translate-y-2
+                      hover:shadow-xl
+                    `}
+                  >
+                    {s.logo && (
+                      <div className="flex justify-center items-center h-24 mb-4">
+                        <img
+                          src={s.logo}
+                          alt={s.name}
+                          className="max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                        />
                       </div>
-                    ))}
+                    )}
+
+                    <h4 className="font-display text-lg font-bold mb-2">
+                      {s.name}
+                    </h4>
+
+                    {s.description && (
+                      <p
+                        className="text-sm leading-relaxed"
+                        style={{ color: "#888" }}
+                      >
+                        {s.description}
+                      </p>
+                    )}
                   </div>
-                </div>
-              );
-            })}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      }
+    )}
+  </div>
+</section>
             {/* Partners */}
             <div className="mt-12 animate-on-scroll">
               <h3 className="font-body text-sm font-bold uppercase tracking-wider mb-4 text-center" style={{ color: "var(--cyber-cyan)" }}>Our Partners</h3>
