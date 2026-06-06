@@ -489,12 +489,14 @@ export default function Home() {
         </section>
 
         {/* ═══════════ SPONSORS & PARTNERS ═══════════ */}
-   <section
+{/* ═══════════ SPONSORS ═══════════ */}
+<section
   id="sponsors"
   className="section-light relative py-20 sm:py-28"
 >
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
+    {/* Heading */}
     <div className="text-center mb-12 animate-on-scroll">
       <span
         className="section-tag"
@@ -520,19 +522,20 @@ export default function Home() {
         className="max-w-2xl mx-auto text-sm sm:text-base"
         style={{ color: "#888" }}
       >
-        We are proud to collaborate with industry leaders,
-        cybersecurity organizations, and community partners.
+        Proudly supported by our industry partners,
+        sponsors, and cybersecurity community leaders.
       </p>
     </div>
 
     {(["platinum", "gold", "silver", "community"] as const).map(
       (tier) => {
         const tc = tierConfig[tier];
+
         const tierSponsors = sponsors.filter(
           (s) => s.tier === tier
         );
 
-        if (!tierSponsors.length) return null;
+        if (tierSponsors.length === 0) return null;
 
         return (
           <div
@@ -555,47 +558,37 @@ export default function Home() {
                   : "grid-cols-2 sm:grid-cols-4"
               }`}
             >
-              {tierSponsors.map((s) => (
+              {tierSponsors.map((sponsor) => (
                 <a
-                  key={s.id}
-                  href={s.website || "#"}
+                  key={sponsor.id}
+                  href={sponsor.website || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group"
+                  className="group block"
                 >
                   <div
-                    className={`
-                      fest-card
-                      ${tc.border}
-                      h-full
-                      p-6
-                      text-center
-                      transition-all
-                      duration-300
-                      hover:-translate-y-2
-                      hover:shadow-xl
-                    `}
+                    className={`fest-card ${tc.border} p-6 h-full text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl`}
                   >
-                    {s.logo && (
+                    {sponsor.logo && (
                       <div className="flex justify-center items-center h-24 mb-4">
                         <img
-                          src={s.logo}
-                          alt={s.name}
+                          src={sponsor.logo}
+                          alt={sponsor.name}
                           className="max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                         />
                       </div>
                     )}
 
                     <h4 className="font-display text-lg font-bold mb-2">
-                      {s.name}
+                      {sponsor.name}
                     </h4>
 
-                    {s.description && (
+                    {sponsor.description && (
                       <p
-                        className="text-sm leading-relaxed"
+                        className="text-sm"
                         style={{ color: "#888" }}
                       >
-                        {s.description}
+                        {sponsor.description}
                       </p>
                     )}
                   </div>
@@ -606,22 +599,36 @@ export default function Home() {
         );
       }
     )}
+   {/* Partners */}
+    <div className="mt-12 animate-on-scroll">
+      <h3
+        className="font-body text-sm font-bold uppercase tracking-wider mb-4 text-center"
+        style={{ color: "var(--cyber-cyan)" }}
+      >
+        Our Partners
+      </h3>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        {partners.map((p) => (
+          <div
+            key={p.id}
+            className="fest-card-rounded text-center"
+            style={{ padding: 16 }}
+          >
+            <h4 className="font-body text-xs font-bold mb-1">
+              {p.name}
+            </h4>
+
+            <p className="font-body text-[10px] gradient-text-green">
+              {p.type}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
   </div>
 </section>
-            {/* Partners */}
-            <div className="mt-12 animate-on-scroll">
-              <h3 className="font-body text-sm font-bold uppercase tracking-wider mb-4 text-center" style={{ color: "var(--cyber-cyan)" }}>Our Partners</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                {partners.map((p) => (
-                  <div key={p.id} className="fest-card-rounded text-center" style={{ padding: 16 }}>
-                    <h4 className="font-body text-xs font-bold mb-1">{p.name}</h4>
-                    <p className="font-body text-[10px] gradient-text-green">{p.type}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ═══════════ REGISTRATION ═══════════ */}
         <section id="register" className="section-dark relative py-20 sm:py-28">
