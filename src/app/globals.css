@@ -247,7 +247,7 @@ html { scroll-behavior: smooth; }
   background: var(--dark);
   color: #fff;
   border-radius: 16px;
-  padding: 14px 18px;
+  padding: 5px 4px;
   min-width: 76px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
