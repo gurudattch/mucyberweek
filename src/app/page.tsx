@@ -306,7 +306,7 @@ export default function Home() {
               </h2>
             </div>
             {/* Filter */}
-            <div className="flex flex-wrap gap-2 justify-center mb-8">
+            <div className="flex flex-wrap gap-2 justify-center mb-8 bg-pink-500 p-4 rounded-xl">
               {categories.map((c) => (
                 <button key={c} className={`filter-btn ${activeFilter === c ? "active" : ""}`} onClick={() => setActiveFilter(c)} style={!activeFilter !== c ? undefined : undefined}>
                   {c}
