@@ -249,7 +249,7 @@ export const events = [
 
 export const ctfInfo = {
   title: "Capture The Flag 2026", tagline: "Hack. Solve. Conquer.", format: "Jeopardy-Style CTF",
-  teamSize: "1–4 Members", duration: "8 Hours", date: "July 18, 2026", time: "9:30 AM – 5:30 PM", prizePool: "₹25,000+",
+  teamSize: "1–4 Members", duration: "5 Hours", date: "July 18, 2026", time: "9:30 AM – 5:30 PM", prizePool: "₹00,000+",
   categories: [
     { name: "Web Exploitation", description: "SQL Injection, XSS, Auth Bypass, SSRF and more", icon: "Globe", difficulty: "Easy to Hard" },
     { name: "Cryptography", description: "Classical ciphers, RSA, AES, hash cracking", icon: "Lock", difficulty: "Medium to Hard" },
