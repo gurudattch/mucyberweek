@@ -668,7 +668,7 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a href="#register" className="btn-dark" style={{ background: "#fff", color: "var(--dark)" }}>Register Now</a>
-                <a href="#ctf" className="btn-dark" style={{ background: "rgba(255,255,255,0.2)", color: "#fff", border: "2px solid rgba(255,255,255,0.3)" }}>Join CTF</a>
+                <a href="/validate" className="btn-dark" style={{ background: "rgba(255,255,255,0.2)", color: "#fff", border: "2px solid rgba(255,255,255,0.3)" }}>Validate Certificate</a>
               </div>
             </div>
           </div>
