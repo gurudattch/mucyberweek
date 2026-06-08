@@ -109,6 +109,16 @@ function ValidateContent() {
   };
 
   return (
+     <div className="certiwall-inner">
+            <div className="certiwall-co text-sm text-gray-500 font-bold uppercase tracking-wider mb-2">Powered By</div>
+            <div className="certiwall-logo-row mb-1">
+              <div className="certiwall-name text-xl font-black font-display">
+                <a href="https://certiwall.in" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-[#ff6b35] transition-colors">
+                  Certi<span style={{ color: "#ff6b35" }}>wall</span>
+                </a>
+              </div>
+            </div>
+       
     <div className="flex-1 flex flex-col items-center justify-center w-full">
       {/* Container Card */}
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden p-6 sm:p-10 my-8">
