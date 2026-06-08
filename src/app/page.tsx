@@ -122,7 +122,7 @@ export default function Home() {
         href="#register"
         className="btn-primary hidden md:inline-flex"
         style={{
-          padding: "8px 24px",
+          padding: "8px 19px",
           fontSize: "0.85rem",
         }}
       >
@@ -155,7 +155,7 @@ export default function Home() {
         onClick={() => setMobileOpen(false)}
         style={{
           display: "block",
-          padding: "12px 16px",
+          padding: "9px 13px",
         }}
       >
         {l.label}
