@@ -58,8 +58,6 @@ export default async function ValidatePage({
             <h1 class="hero-title">Verify Certificate</h1>
             <p class="hero-subtitle">Check the authenticity of your <span>Cyber Security Week 2026</span> certificate</p>
         </div>
-
-        <!-- Wavy Divider -->
         <div class="wavy">
             <svg viewBox="0 0 140 10" fill="none">
                 <path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5"
