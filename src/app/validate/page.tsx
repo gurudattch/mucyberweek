@@ -109,7 +109,7 @@ function ValidateContent() {
   };
 
  return (
-  <div className="certiwall-inner">
+  <div className="certiwall-inner text-center">
     <div className="certiwall-co text-sm text-gray-500 font-bold uppercase tracking-wider mb-2">
       Powered By
     </div>
