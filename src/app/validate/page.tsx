@@ -79,7 +79,6 @@ export default async function ValidatePage({
                 </div>
                 <div class="certiwall-name"><a href="https://certiwall.in">Certi<span>wall</span></a></div>
             </div>
-            <div class="certiwall-tagline">A New Era of Digital Certificates, Your ultimate certificatate solutions</div>
         </div>
         <div className="search-card">
           <form
