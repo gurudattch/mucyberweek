@@ -196,7 +196,7 @@ export default async function ValidatePage({
       </main>
       <footer class="certiwall-brand">
         <div class="certiwall-inner">
-            <div class="certiwall-co">Co Powered By</div>
+            <div class="certiwall-co">Powered By</div>
             <div class="certiwall-logo-row">
                 <div class="certiwall-logo">
                     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -208,9 +208,9 @@ export default async function ValidatePage({
                         <path d="M10 28H8C6.9 28 6 27.1 6 26V24" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
                     </svg>
                 </div>
-                <div class="certiwall-name">Certi<span>wall</span></div>
+                <div class="certiwall-name"><a href="https://certiwall.in">Certi<span>wall</span></a></div>
             </div>
-            <div class="certiwall-tagline">A New Era of Digital Certificates</div>
+            <div class="certiwall-tagline">A New Era of Digital Certificates, Your ultimate certificatate solutions</div>
         </div>
     </footer>
       <div className="bottom-bar">
