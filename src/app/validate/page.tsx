@@ -1,157 +1,193 @@
-"use client";
+export const dynamic = "force-dynamic";
 
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import "./validate.css";
 
-export default function ValidatePage() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+interface PageProps {
+  searchParams: Promise<{
+    id?: string;
+  }>;
+}
 
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
+async function verifyCertificate(id: string) {
+  try {
+    const response = await fetch(
+      `https://certiwall-minimal.vercel.app/api/verify/${encodeURIComponent(id)}`,
+      {
+        cache: "no-store",
+      }
+    );
 
-  useEffect(() => {
-    if (!id) return;
+    return await response.json();
+  } catch {
+    return {
+      valid: false,
+      message: "Verification service unavailable.",
+    };
+  }
+}
 
-    setLoading(true);
+export default async function ValidatePage({
+  searchParams,
+}: PageProps) {
+  const { id } = await searchParams;
 
-    fetch(
-      `https://certiwall-minimal.vercel.app/api/verify/${encodeURIComponent(id)}`
-    )
-      .then((r) => r.json())
-      .then((data) => setResult(data))
-      .catch(() =>
-        setResult({
-          valid: false,
-          message: "Verification service unavailable",
-        })
-      )
-      .finally(() => setLoading(false));
-  }, [id]);
+  const result = id ? await verifyCertificate(id) : null;
 
   return (
-    <main className="main">
-      <div className="hero">
-        <h1 className="hero-title">Verify Certificate</h1>
+    <>
+      <div className="top-bar">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
       </div>
 
-      <div className="search-card">
-        <form action="/validate" method="GET" className="input-group">
-          <div className="input-wrapper">
-            <input
-              name="id"
-              defaultValue={id ?? ""}
-              className="cert-input"
-              placeholder="MUCSW2026-000006"
-            />
-          </div>
+      <main className="main">
+        <div className="hero">
+          <h1 className="hero-title">Verify Certificate</h1>
+          <p className="hero-subtitle">
+            Check the authenticity of your <span>certificate</span>
+          </p>
+        </div>
 
-          <button type="submit" className="verify-btn">
-            Verify
-          </button>
-        </form>
+        <div className="search-card">
+          <form
+            action="/validate"
+            method="GET"
+            className="input-group"
+          >
+            <div className="input-wrapper">
+              <input
+                type="text"
+                name="id"
+                defaultValue={id ?? ""}
+                className="cert-input"
+                placeholder="MUCSW2026-000006"
+                autoComplete="off"
+              />
+            </div>
 
-        {loading && (
-          <div className="invalid-body">
-            <p>Verifying certificate...</p>
-          </div>
-        )}
+            <button
+              type="submit"
+              className="verify-btn"
+            >
+              Verify
+            </button>
+          </form>
 
-        {result?.valid && (
-          <div className="result-card valid visible">
-            <div className="result-header">
-              <div>
-                <div className="result-status-title">
-                  Certificate Verified!
+          {result?.valid && (
+            <div className="result-card valid visible">
+              <div className="result-header">
+                <div
+                  className="result-icon"
+                  style={{ position: "relative" }}
+                >
+                  ✓
                 </div>
 
-                <div className="result-status-sub">
-                  This certificate is authentic and valid
+                <div>
+                  <div className="result-status-title">
+                    Certificate Verified!
+                  </div>
+
+                  <div className="result-status-sub">
+                    This certificate is authentic and valid
+                  </div>
+                </div>
+              </div>
+
+              <div className="result-body">
+                <div className="result-field">
+                  <span className="result-field-label">
+                    Certificate ID
+                  </span>
+                  <span className="result-field-value cert-id">
+                    {result.certificate.certificateId}
+                  </span>
+                </div>
+
+                <div className="result-field">
+                  <span className="result-field-label">
+                    Participant
+                  </span>
+                  <span className="result-field-value name">
+                    {result.certificate.participantName}
+                  </span>
+                </div>
+
+                <div className="result-field">
+                  <span className="result-field-label">
+                    Event
+                  </span>
+                  <span className="result-field-value">
+                    {result.certificate.eventName}
+                  </span>
+                </div>
+
+                <div className="result-field">
+                  <span className="result-field-label">
+                    Organization
+                  </span>
+                  <span className="result-field-value">
+                    {result.certificate.organizationName}
+                  </span>
+                </div>
+
+                <div className="result-field">
+                  <span className="result-field-label">
+                    Status
+                  </span>
+                  <span className="result-field-value">
+                    {result.certificate.status}
+                  </span>
+                </div>
+
+                <div className="result-field">
+                  <span className="result-field-label">
+                    Issue Date
+                  </span>
+                  <span className="result-field-value">
+                    {new Date(
+                      result.certificate.issueDate
+                    ).toLocaleDateString()}
+                  </span>
                 </div>
               </div>
             </div>
+          )}
 
-            <div className="result-body">
-              <div className="result-field">
-                <span className="result-field-label">
-                  Certificate ID
-                </span>
-                <span className="result-field-value cert-id">
-                  {result.certificate.certificateId}
-                </span>
-              </div>
+          {result && !result.valid && (
+            <div className="result-card invalid visible">
+              <div className="result-header">
+                <div className="result-icon">✕</div>
 
-              <div className="result-field">
-                <span className="result-field-label">
-                  Participant
-                </span>
-                <span className="result-field-value name">
-                  {result.certificate.participantName}
-                </span>
-              </div>
+                <div>
+                  <div className="result-status-title">
+                    Certificate Not Found
+                  </div>
 
-              <div className="result-field">
-                <span className="result-field-label">
-                  Event
-                </span>
-                <span className="result-field-value">
-                  {result.certificate.eventName}
-                </span>
-              </div>
-
-              <div className="result-field">
-                <span className="result-field-label">
-                  Organization
-                </span>
-                <span className="result-field-value">
-                  {result.certificate.organizationName}
-                </span>
-              </div>
-
-              <div className="result-field">
-                <span className="result-field-label">
-                  Status
-                </span>
-                <span className="result-field-value">
-                  {result.certificate.status}
-                </span>
-              </div>
-
-              <div className="result-field">
-                <span className="result-field-label">
-                  Issued On
-                </span>
-                <span className="result-field-value">
-                  {new Date(
-                    result.certificate.issueDate
-                  ).toLocaleDateString()}
-                </span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {result && !result.valid && (
-          <div className="result-card invalid visible">
-            <div className="result-header">
-              <div>
-                <div className="result-status-title">
-                  Certificate Not Found
-                </div>
-
-                <div className="result-status-sub">
-                  Verification failed
+                  <div className="result-status-sub">
+                    Verification failed
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="invalid-body">
-              <p>{result.message}</p>
+              <div className="invalid-body">
+                <p>{result.message}</p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+      </main>
+
+      <div className="bottom-bar">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
       </div>
-    </main>
+    </>
   );
 }
