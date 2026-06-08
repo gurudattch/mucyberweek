@@ -114,7 +114,7 @@ function ValidateContent() {
             <div className="certiwall-logo-row mb-1">
               <div className="certiwall-name text-xl font-black font-display">
                 <a href="https://certiwall.in" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-[#ff6b35] transition-colors">
-                  Certi<span style={{ color: "#ff6b35" }}>wall</span>
+                  Certi<span style={{ color: "#ff6b35" }}/>wall</span>
                 </a>
               </div>
             </div>
