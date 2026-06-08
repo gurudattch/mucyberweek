@@ -1,287 +1,211 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import "./validate.css";
+import { useState } from "react";
 
-interface Certificate {
+// Define the expected shape of your API response
+interface CertificateData {
   certificateId: string;
-  participantName: string;
-  eventName: string;
-  organizationName: string;
-  status: string;
+  participantId: string;
+  eventId: string;
+  templateId: string;
+  pdfUrl: string | null;
+  pngUrl: string | null;
+  status: "generated" | "revoked" | string;
   issueDate: string;
-  revokeReason?: string;
-  qrCodeData?: string;
-}
-
-interface VerifyResponse {
-  valid: boolean;
-  message?: string;
-  certificate?: Certificate;
+  emailStatus: string;
+  emailSentAt: string | null;
+  emailOpened: boolean;
+  qrCodeData: string; // JSON string
+  revokedAt: string | null;
+  revokeReason: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export default function ValidatePage() {
-  const [certificateId, setCertificateId] = useState("");
-  const [result, setResult] = useState<VerifyResponse | null>(null);
+  const [searchId, setSearchId] = useState("");
+  const [certificate, setCertificate] = useState<CertificateData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id") || "";
-
-    setCertificateId(id);
-
-    if (id) {
-      verifyCertificate(id);
-    }
-  }, []);
-
-  async function verifyCertificate(id: string) {
-    if (!id.trim()) return;
+  const handleVerify = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchId) return;
 
     setLoading(true);
+    setError("");
+    setCertificate(null);
 
     try {
-      const response = await fetch(
-        `https://certiwall-minimal.vercel.app/api/verify/${encodeURIComponent(id)}`,
+      const res = await fetch(
+        `https://certiwall-minimal.vercel.app/api/verify/${encodeURIComponent(searchId)}`,
         { cache: "no-store" }
       );
-
-      const data = await response.json();
-      setResult(data);
-    } catch {
-      setResult({
-        valid: false,
-        message: "Verification service unavailable.",
-      });
+      
+      if (!res.ok) {
+        throw new Error("Certificate not found or invalid ID.");
+      }
+      
+      const data = await res.json();
+      setCertificate(data);
+    } catch (err: any) {
+      setError(err.message || "An error occurred while verifying.");
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const url = new URL(window.location.href);
-    url.searchParams.set("id", certificateId);
-    window.history.replaceState({}, "", url.toString());
-
-    verifyCertificate(certificateId);
-  }
-
-  // SAFE QR PARSE (prevents crash)
-  let qrData: any = null;
-  try {
-    if (result?.certificate?.qrCodeData) {
-      qrData = JSON.parse(result.certificate.qrCodeData);
+  // Helper to safely parse the JSON string stored in qrCodeData
+  const getParsedQrData = (qrString: string) => {
+    try {
+      return JSON.parse(qrString);
+    } catch (e) {
+      return {};
     }
-  } catch {
-    qrData = null;
-  }
+  };
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return "-";
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    });
+  };
 
   return (
     <>
-      <div className="top-bar">
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
+      <div className="min-h-screen flex flex-col items-center p-4 sm:p-6" style={{ background: "var(--cream, #fdfbf7)" }}>
+        
+        {/* Main Content Wrapper - flex-1 pushes footer to the bottom */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full">
+          
+          {/* Container Card */}
+          <div className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden p-6 sm:p-10 my-8">
+            
+            {/* Top Gradient Border */}
+            <div className="absolute top-0 left-0 right-0 h-2" style={{ background: "linear-gradient(135deg, var(--pink, #ff4e7c), var(--orange, #ff6b35))" }} />
 
-      <main className="main">
-        <div className="hero">
-          <div className="hero-icon">
-            <svg viewBox="0 0 40 40" fill="none">
-              <path
-                d="M20 3L35 10V25C35 32 28 37 20 37C12 37 5 32 5 25V10L20 3Z"
-                stroke="#FF6B35"
-                strokeWidth="2"
-                fill="rgba(255,107,53,0.06)"
-              />
-              <path
-                d="M16 19V15C16 12.5 17.8 11 20 11C22.2 11 24 12.5 24 15V19"
-                stroke="#FF6B35"
-                strokeWidth="1.5"
-                fill="none"
-                strokeLinecap="round"
-              />
-              <rect
-                x="14"
-                y="19"
-                width="12"
-                height="9"
-                rx="2"
-                stroke="#FF6B35"
-                strokeWidth="1.5"
-                fill="rgba(255,107,53,0.08)"
-              />
-              <circle cx="20" cy="24" r="1.5" fill="#FF6B35" />
-            </svg>
-          </div>
-
-          <h1 className="hero-title">Verify Certificate</h1>
-
-          <p className="hero-subtitle">
-            Check the authenticity of your
-            <span> Cyber Security Week 2026 </span>
-            certificate
-          </p>
-        </div>
-         <div className="certiwall-inner">
-          <div className="certiwall-co">Powered By</div>
-          <div className="certiwall-logo-row">
-          <div className="certiwall-name"><a href="https://certiwall.in" target="_blank" rel="noopener noreferrer">Certi<span>wall</span></a></div>
-          </div>
-        </div>
-       <div class="wavy"><svg viewBox="0 0 140 10" fill="none"><path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5" stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg></div>
-        <div className="search-card">
-          <form onSubmit={handleSubmit} className="input-group">
-            <div className="input-wrapper">
+            {/* Input Form */}
+            <form onSubmit={handleVerify} className="flex flex-col sm:flex-row gap-4 mb-8">
               <input
                 type="text"
-                value={certificateId}
-                onChange={(e) => setCertificateId(e.target.value)}
-                className="cert-input"
-                placeholder="MUCSW2026-000006"
-                autoComplete="off"
+                placeholder="Enter Certificate ID (e.g. MUCYBER2026-000001)"
+                value={searchId}
+                onChange={(e) => setSearchId(e.target.value)}
+                className="flex-1 bg-gray-50 border border-gray-200 text-center sm:text-left text-gray-700 font-bold px-6 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ff6b35] transition-all"
               />
-            </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="text-white font-bold px-10 py-4 rounded-xl transition-transform hover:scale-105 active:scale-95 disabled:opacity-50"
+                style={{ background: "#ff6b35" }}
+              >
+                {loading ? "Verifying..." : "Verify"}
+              </button>
+            </form>
 
-            <button type="submit" className="verify-btn" disabled={loading}>
-              {loading ? "Verifying..." : "Verify"}
-            </button>
-          </form>
-
-          {result?.valid && result.certificate && (
-            <div className="result-card valid visible">
-              <div className="result-header">
-                <div className="result-icon">✓</div>
-
-                <div>
-                  <div className="result-status-title">
-                    Certificate Verified!
-                  </div>
-
-                  <div className="result-status-sub">
-                    This certificate is authentic and valid
-                  </div>
-                </div>
+            {/* Error State */}
+            {error && (
+              <div className="bg-red-50 text-red-500 font-bold p-6 rounded-2xl text-center mb-8">
+                {error}
               </div>
+            )}
 
-              <div className="result-body">
-                <div className="result-field">
-                  <span className="result-field-label">Certificate ID</span>
-                  <span className="result-field-value cert-id">
-                    {result.certificate.certificateId}
-                  </span>
-                </div>
+            {/* Results Area */}
+            {certificate && (() => {
+              const qrData = getParsedQrData(certificate.qrCodeData);
+              const isRevoked = certificate.status === "revoked";
 
-                <div className="result-field">
-                  <span className="result-field-label">Participant</span>
-                  <span className="result-field-value name">
-                    {result.certificate.participantName}
-                  </span>
-                </div>
-
-                <div className="result-field">
-                  <span className="result-field-label">Event</span>
-                  <span className="result-field-value">
-                    {result.certificate.eventName}
-                  </span>
-                </div>
-
-                <div className="result-field">
-                  <span className="result-field-label">Organization</span>
-                  <span className="result-field-value">
-                    {result.certificate.organizationName}
-                  </span>
-                </div>
-
-                <div className="result-field">
-                  <span className="result-field-label">Status</span>
-                  <span className="result-field-value">
-                    {result.certificate.status}
-                  </span>
-                </div>
-
-                <div className="result-field">
-                  <span className="result-field-label">Issue Date</span>
-                  <span className="result-field-value">
-                    {new Date(result.certificate.issueDate).toLocaleDateString()}
-                  </span>
-                </div>
-
-                {/* QR DATA SECTION */}
-                {qrData && (
-                  <div className="result-field">
-                    <span className="result-field-label">QR Data</span>
-                    <span className="result-field-value">
-                      <pre style={{ margin: 0, whiteSpace: "pre-wrap" }}>
-                        {JSON.stringify(qrData, null, 2)}
-                      </pre>
-                    </span>
-                  </div>
-                )}
-
-                {result.certificate.revokeReason && (
-                  <div className="result-field">
-                    <span className="result-field-label">
-                      Revocation Reason
-                    </span>
-                    <span
-                      className="result-field-value"
-                      style={{ color: "red" }}
-                    >
-                      {result.certificate.revokeReason}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {result && !result.valid && (
-            <div className="result-card invalid visible">
-              <div className="result-header">
-                <div className="result-icon">✕</div>
-
-                <div>
-                  <div className="result-status-title">
-                    Certificate Not Found
+              return (
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  
+                  {/* Dynamic Status Banner */}
+                  <div 
+                    className={`p-6 rounded-2xl flex items-start sm:items-center gap-4 mb-8 transition-colors ${
+                      isRevoked ? "bg-red-500/90 text-white" : "bg-[#7cdbc4] text-white"
+                    }`}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1 sm:mt-0">
+                      {isRevoked ? (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                      ) : (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      )}
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold font-display leading-tight mb-1">
+                        {isRevoked ? "Certificate Revoked!" : "Certificate Verified!"}
+                      </h2>
+                      <p className="text-white/90 text-sm font-body">
+                        {isRevoked 
+                          ? "This certificate is no longer valid and has been revoked by the issuer." 
+                          : "This certificate is authentic and valid"}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="result-status-sub">
-                    Verification failed
+                  {/* Data Table */}
+                  <div className="flex flex-col">
+                    <DataRow label="Certificate ID" value={certificate.certificateId} valueColor="#ff4e7c" />
+                    <DataRow label="Participant" value={qrData.participantName || "-"} />
+                    <DataRow label="Event" value={qrData.eventName || "-"} />
+                    <DataRow 
+                      label="Status" 
+                      value={certificate.status} 
+                      valueColor={isRevoked ? "#ef4444" : "#4b5563"} 
+                    />
+                    <DataRow label="Issue Date" value={formatDate(certificate.issueDate)} />
+
+                    {/* Conditionally render Revoked Information */}
+                    {isRevoked && (
+                      <>
+                        <DataRow label="Revoked At" value={formatDate(certificate.revokedAt)} valueColor="#ef4444" />
+                        <DataRow label="Revoke Reason" value={certificate.revokeReason || "No reason provided"} valueColor="#ef4444" />
+                      </>
+                    )}
                   </div>
                 </div>
-              </div>
-
-              <div className="invalid-body">
-                <p>{result.message}</p>
-              </div>
-            </div>
-          )}
-        </div>
-      </main>
-
-      <footer className="certiwall-brand">
-        <div className="certiwall-inner">
-          <div className="certiwall-co">Powered By</div>
-
-          <div className="certiwall-logo-row">
-            <div className="certiwall-name">
-              <a href="https://certiwall.in" target="_blank" rel="noopener noreferrer">
-                Certi<span>wall</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="certiwall-tagline">
-            A New Era of Digital Certificates, Your ultimate certificate solution
+              );
+            })()}
           </div>
         </div>
-      </footer>
+
+        {/* Certiwall Footer */}
+        <footer className="certiwall-brand w-full text-center py-6 mt-auto">
+          <div className="certiwall-inner">
+            <div className="certiwall-co text-sm text-gray-500 font-bold uppercase tracking-wider mb-2">Powered By</div>
+            <div className="certiwall-logo-row mb-1">
+              <div className="certiwall-name text-xl font-black font-display">
+                <a href="https://certiwall.in" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-[#ff6b35] transition-colors">
+                  Certi<span style={{ color: "#ff6b35" }}>wall</span>
+                </a>
+              </div>
+            </div>
+            <div className="certiwall-tagline text-xs text-gray-400 font-body">
+              A New Era of Digital Certificates, Your ultimate certificate solution
+            </div>
+          </div>
+        </footer>
+
+      </div>
     </>
+  );
+}
+
+// Reusable component for the table rows
+function DataRow({ label, value, valueColor = "#4b5563" }: { label: string; value: string; valueColor?: string }) {
+  return (
+    <div className="flex flex-col sm:flex-row py-4 border-b border-gray-100 last:border-0 gap-1 sm:gap-4">
+      <div className="sm:w-1/3 text-xs font-bold text-gray-400 tracking-[0.15em] uppercase flex items-center">
+        {label}
+      </div>
+      <div 
+        className="sm:w-2/3 text-sm font-bold uppercase" 
+        style={{ color: valueColor }}
+      >
+        {value}
+      </div>
+    </div>
   );
 }
