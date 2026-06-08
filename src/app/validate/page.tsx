@@ -241,97 +241,10 @@ export default function ValidatePage() {
           )}
 
 {/* VALID CERTIFICATE */}
-{result?.valid && result.certificate && !isRevoked && (
-  <div className="result-card valid visible">
-    <div className="result-header">
-      <div
-        className="result-icon"
-        style={{ position: "relative" }}
-      >
-        ✓
-      </div>
-
-      <div>
-        <div className="result-status-title">
-          Certificate Verified!
-        </div>
-
-        <div className="result-status-sub">
-          This certificate is authentic and valid
-        </div>
-      </div>
-    </div>
-
-    <div className="result-body">
-      <div className="result-field">
-        <span className="result-field-label">
-          Certificate ID
-        </span>
-        <span className="result-field-value cert-id">
-          {result.certificate.certificateId}
-        </span>
-      </div>
-
-      <div className="result-field">
-        <span className="result-field-label">
-          Participant
-        </span>
-        <span className="result-field-value name">
-          {result.certificate.participantName}
-        </span>
-      </div>
-
-      <div className="result-field">
-        <span className="result-field-label">
-          Event
-        </span>
-        <span className="result-field-value">
-          {result.certificate.eventName}
-        </span>
-      </div>
-
-      <div className="result-field">
-        <span className="result-field-label">
-          Organization
-        </span>
-        <span className="result-field-value">
-          {result.certificate.organizationName}
-        </span>
-      </div>
-
-      <div className="result-field">
-        <span className="result-field-label">
-          Status
-        </span>
-        <span className="result-field-value">
-          {result.certificate.status}
-        </span>
-      </div>
-
-      <div className="result-field">
-        <span className="result-field-label">
-          Issue Date
-        </span>
-        <span className="result-field-value">
-          {new Date(
-            result.certificate.issueDate
-          ).toLocaleDateString()}
-        </span>
-      </div>
-    </div>
-  </div>
-)}
-
-{/* REVOKED CERTIFICATE */}
-{result?.valid && result.certificate && isRevoked && (
+{result?.certificate && isRevoked && (
   <div className="result-card revoked visible">
     <div className="result-header revoked-header">
-      <div
-        className="result-icon"
-        style={{ position: "relative" }}
-      >
-        ✕
-      </div>
+      <div className="result-icon">✕</div>
 
       <div>
         <div className="result-status-title">
@@ -346,106 +259,55 @@ export default function ValidatePage() {
 
     <div className="result-body">
       <div className="result-field">
-        <span className="result-field-label">
-          Certificate ID
-        </span>
+        <span className="result-field-label">Certificate ID</span>
         <span className="result-field-value cert-id">
           {result.certificate.certificateId}
         </span>
       </div>
 
       <div className="result-field">
-        <span className="result-field-label">
-          Participant
-        </span>
-        <span className="result-field-value name">
+        <span className="result-field-label">Participant</span>
+        <span className="result-field-value">
           {result.certificate.participantName}
         </span>
       </div>
 
       <div className="result-field">
-        <span className="result-field-label">
-          Event
-        </span>
+        <span className="result-field-label">Event</span>
         <span className="result-field-value">
           {result.certificate.eventName}
         </span>
       </div>
 
       <div className="result-field">
-        <span className="result-field-label">
-          Organization
-        </span>
+        <span className="result-field-label">Organization</span>
         <span className="result-field-value">
           {result.certificate.organizationName}
         </span>
       </div>
 
       <div className="result-field">
-        <span className="result-field-label">
-          Status
-        </span>
-        <span
-          className="result-field-value"
-          style={{
-            color: "#dc2626",
-            fontWeight: 700,
-          }}
-        >
+        <span className="result-field-label">Status</span>
+        <span style={{ color: "#dc2626", fontWeight: 700 }}>
           REVOKED
         </span>
       </div>
 
       <div className="result-field">
-        <span className="result-field-label">
-          Issue Date
-        </span>
+        <span className="result-field-label">Issue Date</span>
         <span className="result-field-value">
-          {new Date(
-            result.certificate.issueDate
-          ).toLocaleDateString()}
+          {new Date(result.certificate.issueDate).toLocaleDateString()}
         </span>
       </div>
 
       {result.certificate.revokeReason && (
         <div className="result-field">
-          <span className="result-field-label">
-            Revocation Reason
-          </span>
-          <span
-            className="result-field-value"
-            style={{
-              color: "#dc2626",
-              fontWeight: 600,
-            }}
-          >
+          <span className="result-field-label">Reason</span>
+          <span style={{ color: "#dc2626", fontWeight: 600 }}>
             {result.certificate.revokeReason}
           </span>
         </div>
       )}
-    </div>
-  </div>
-)}
-
-{/* NOT FOUND */}
-{result && !result.valid && (
-  <div className="result-card invalid visible">
-    <div className="result-header">
-      <div className="result-icon">✕</div>
-
-      <div>
-        <div className="result-status-title">
-          Certificate Not Found
-        </div>
-
-        <div className="result-status-sub">
-          Verification failed
-        </div>
-      </div>
-    </div>
-
-    <div className="invalid-body">
-      <p>{result.message}</p>
     </div>
   </div>
 )}
