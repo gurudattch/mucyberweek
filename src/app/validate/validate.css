@@ -663,3 +663,24 @@
             background: rgba(255,255,255,0.3);
             animation: ripple 1.5s ease-out;
         }
+.revoked-header {
+  background: #dc2626;
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px 12px 0 0;
+}
+
+.revoked-header .result-icon {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.revoked-header .result-status-title,
+.revoked-header .result-status-sub {
+  color: #fff;
+}
+
+.result-card.revoked {
+  border: 2px solid #dc2626;
+  overflow: hidden;
+}
