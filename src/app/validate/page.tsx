@@ -11,6 +11,7 @@ interface Certificate {
   status: string;
   issueDate: string;
   revokeReason?: string;
+  qrCodeData?: string;
 }
 
 interface VerifyResponse {
@@ -42,12 +43,8 @@ export default function ValidatePage() {
 
     try {
       const response = await fetch(
-        `https://certiwall-minimal.vercel.app/api/verify/${encodeURIComponent(
-          id
-        )}`,
-        {
-          cache: "no-store",
-        }
+        `https://certiwall-minimal.vercel.app/api/verify/${encodeURIComponent(id)}`,
+        { cache: "no-store" }
       );
 
       const data = await response.json();
@@ -72,6 +69,15 @@ export default function ValidatePage() {
     verifyCertificate(certificateId);
   }
 
+  // SAFE QR PARSE (prevents crash)
+  let qrData: any = null;
+  try {
+    if (result?.certificate?.qrCodeData) {
+      qrData = JSON.parse(result.certificate.qrCodeData);
+    }
+  } catch {
+    qrData = null;
+  }
 
   return (
     <>
@@ -122,13 +128,13 @@ export default function ValidatePage() {
             certificate
           </p>
         </div>
-        <div className="certiwall-inner">
+         <div className="certiwall-inner">
           <div className="certiwall-co">Powered By</div>
           <div className="certiwall-logo-row">
-            <div className="certiwall-name"><a href="https://certiwall.in" target="_blank" rel="noopener noreferrer">Certi<span>wall</span></a></div>
+          <div className="certiwall-name"><a href="https://certiwall.in" target="_blank" rel="noopener noreferrer">Certi<span>wall</span></a></div>
           </div>
         </div>
-        <div class="wavy"><svg viewBox="0 0 140 10" fill="none"><path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5" stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg></div>
+       <div class="wavy"><svg viewBox="0 0 140 10" fill="none"><path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5" stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg></div>
         <div className="search-card">
           <form onSubmit={handleSubmit} className="input-group">
             <div className="input-wrapper">
@@ -142,11 +148,7 @@ export default function ValidatePage() {
               />
             </div>
 
-            <button
-              type="submit"
-              className="verify-btn"
-              disabled={loading}
-            >
+            <button type="submit" className="verify-btn" disabled={loading}>
               {loading ? "Verifying..." : "Verify"}
             </button>
           </form>
@@ -154,12 +156,7 @@ export default function ValidatePage() {
           {result?.valid && result.certificate && (
             <div className="result-card valid visible">
               <div className="result-header">
-                <div
-                  className="result-icon"
-                  style={{ position: "relative" }}
-                >
-                  ✓
-                </div>
+                <div className="result-icon">✓</div>
 
                 <div>
                   <div className="result-status-title">
@@ -174,60 +171,58 @@ export default function ValidatePage() {
 
               <div className="result-body">
                 <div className="result-field">
-                  <span className="result-field-label">
-                    Certificate ID
-                  </span>
+                  <span className="result-field-label">Certificate ID</span>
                   <span className="result-field-value cert-id">
                     {result.certificate.certificateId}
                   </span>
                 </div>
 
                 <div className="result-field">
-                  <span className="result-field-label">
-                    Participant
-                  </span>
+                  <span className="result-field-label">Participant</span>
                   <span className="result-field-value name">
                     {result.certificate.participantName}
                   </span>
                 </div>
 
                 <div className="result-field">
-                  <span className="result-field-label">
-                    Event
-                  </span>
+                  <span className="result-field-label">Event</span>
                   <span className="result-field-value">
                     {result.certificate.eventName}
                   </span>
                 </div>
 
                 <div className="result-field">
-                  <span className="result-field-label">
-                    Organization
-                  </span>
+                  <span className="result-field-label">Organization</span>
                   <span className="result-field-value">
                     {result.certificate.organizationName}
                   </span>
                 </div>
 
                 <div className="result-field">
-                  <span className="result-field-label">
-                    Status
-                  </span>
+                  <span className="result-field-label">Status</span>
                   <span className="result-field-value">
                     {result.certificate.status}
                   </span>
                 </div>
 
                 <div className="result-field">
-                  <span className="result-field-label">
-                    Issue Date
-                  </span>
+                  <span className="result-field-label">Issue Date</span>
                   <span className="result-field-value">
-                    {new Date(
-                      result.certificate.issueDate
-                    ).toLocaleDateString()}
+                    {new Date(result.certificate.issueDate).toLocaleDateString()}
                   </span>
                 </div>
+
+                {/* QR DATA SECTION */}
+                {qrData && (
+                  <div className="result-field">
+                    <span className="result-field-label">QR Data</span>
+                    <span className="result-field-value">
+                      <pre style={{ margin: 0, whiteSpace: "pre-wrap" }}>
+                        {JSON.stringify(qrData, null, 2)}
+                      </pre>
+                    </span>
+                  </div>
+                )}
 
                 {result.certificate.revokeReason && (
                   <div className="result-field">
@@ -276,30 +271,17 @@ export default function ValidatePage() {
 
           <div className="certiwall-logo-row">
             <div className="certiwall-name">
-              <a
-                href="https://certiwall.in"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="https://certiwall.in" target="_blank" rel="noopener noreferrer">
                 Certi<span>wall</span>
               </a>
             </div>
           </div>
 
           <div className="certiwall-tagline">
-            A New Era of Digital Certificates, Your ultimate certificate
-            solution
+            A New Era of Digital Certificates, Your ultimate certificate solution
           </div>
         </div>
       </footer>
-
-      <div className="bottom-bar">
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
     </>
   );
-} 
+}
