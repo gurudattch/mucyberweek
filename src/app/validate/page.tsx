@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import "./validate.css";
 
 interface Certificate {
@@ -21,19 +20,20 @@ interface VerifyResponse {
 }
 
 export default function ValidatePage() {
-  const searchParams = useSearchParams();
-
-  const initialId = searchParams.get("id") || "";
-
-  const [certificateId, setCertificateId] = useState(initialId);
+  const [certificateId, setCertificateId] = useState("");
   const [result, setResult] = useState<VerifyResponse | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (initialId) {
-      verifyCertificate(initialId);
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id") || "";
+
+    setCertificateId(id);
+
+    if (id) {
+      verifyCertificate(id);
     }
-  }, [initialId]);
+  }, []);
 
   async function verifyCertificate(id: string) {
     if (!id.trim()) return;
@@ -71,6 +71,7 @@ export default function ValidatePage() {
 
     verifyCertificate(certificateId);
   }
+
 
   return (
     <>
