@@ -315,11 +315,11 @@ export const sponsors: Sponsor[] = [
   },
   {
     id: "3",
-    name: "SecOps Group",
-    tier: "gold",
-    description: "Cyber Security Certifications",
-    website: "https://secops.group",
-    logo: "/sponsors/secops.png",
+    name: "MahaGuru",
+    tier: "platinum",
+    description: "CTF Partners",
+    website: "mail:mahaguru@proton.me",
+    logo: "https://ctftime.org/media/cache/5e/2f/5e2f6888566d283aa531f367268b46b5.png",
   },
 ];
 
