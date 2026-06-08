@@ -180,8 +180,6 @@ export default async function ValidatePage({
           )}
         </div>
       </main>
-
-      <div className="bottom-bar">
       <footer class="certiwall-brand">
         <div class="certiwall-inner">
             <div class="certiwall-co">Co Powered By</div>
@@ -201,6 +199,8 @@ export default async function ValidatePage({
             <div class="certiwall-tagline">A New Era of Digital Certificates</div>
         </div>
     </footer>
+      <div className="bottom-bar">
+
         <span />
         <span />
         <span />
