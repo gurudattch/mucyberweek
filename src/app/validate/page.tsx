@@ -58,13 +58,7 @@ export default async function ValidatePage({
             <h1 class="hero-title">Verify Certificate</h1>
             <p class="hero-subtitle">Check the authenticity of your <span>Cyber Security Week 2026</span> certificate</p>
         </div>
-        <div class="wavy">
-            <svg viewBox="0 0 140 10" fill="none">
-                <path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5"
-                      stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-            </svg>
-        </div>
-       <div class="certiwall-inner">
+          <div class="certiwall-inner">
             <div class="certiwall-co">Powered By</div>
             <div class="certiwall-logo-row">
                 <div class="certiwall-logo">
@@ -80,6 +74,13 @@ export default async function ValidatePage({
                 <div class="certiwall-name"><a href="https://certiwall.in">Certi<span>wall</span></a></div>
             </div>
         </div>
+        <div class="wavy">
+            <svg viewBox="0 0 140 10" fill="none">
+                <path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5"
+                      stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+        </div>
+     
         <div className="search-card">
           <form
             action="/validate"
