@@ -64,7 +64,23 @@ export default async function ValidatePage({
                       stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
             </svg>
         </div>
-
+       <div class="certiwall-inner">
+            <div class="certiwall-co">Powered By</div>
+            <div class="certiwall-logo-row">
+                <div class="certiwall-logo">
+                    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="#4ECDC4"/>
+                        <path d="M10 16L14 20L22 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 8V6C6 4.9 6.9 4 8 4H10" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M22 4H24C25.1 4 26 4.9 26 6V8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M26 24V26C26 27.1 25.1 28 24 28H22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M10 28H8C6.9 28 6 27.1 6 26V24" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="certiwall-name"><a href="https://certiwall.in">Certi<span>wall</span></a></div>
+            </div>
+            <div class="certiwall-tagline">A New Era of Digital Certificates, Your ultimate certificatate solutions</div>
+        </div>
         <div className="search-card">
           <form
             action="/validate"
