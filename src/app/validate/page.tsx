@@ -108,25 +108,36 @@ function ValidateContent() {
     });
   };
 
-  return (
-     <div className="certiwall-inner">
-            <div className="certiwall-co text-sm text-gray-500 font-bold uppercase tracking-wider mb-2">Powered By</div>
-            <div className="certiwall-logo-row mb-1">
-              <div className="certiwall-name text-xl font-black font-display">
-                <a href="https://certiwall.in" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-[#ff6b35] transition-colors">
-                  Certi<span style={{ color: "#ff6b35" }}/>wall</span>
-                </a>
-              </div>
-            </div>
-       
-    <div className="flex-1 flex flex-col items-center justify-center w-full">
-      {/* Container Card */}
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden p-6 sm:p-10 my-8">
-        
-        {/* Top Gradient Border */}
-        <div className="absolute top-0 left-0 right-0 h-2" style={{ background: "linear-gradient(135deg, var(--pink, #ff4e7c), var(--orange, #ff6b35))" }} />
+ return (
+  <div className="certiwall-inner">
+    <div className="certiwall-co text-sm text-gray-500 font-bold uppercase tracking-wider mb-2">
+      Powered By
+    </div>
 
-        {/* Input Form */}
+    <div className="certiwall-logo-row mb-1">
+      <div className="certiwall-name text-xl font-black font-display">
+        <a
+          href="https://certiwall.in"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-800 hover:text-[#ff6b35] transition-colors"
+        >
+          Certi
+          <span style={{ color: "#ff6b35" }}>wall</span>
+        </a>
+      </div>
+    </div>
+
+    <div className="flex-1 flex flex-col items-center justify-center w-full">
+      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden p-6 sm:p-10 my-8">
+
+        <div
+          className="absolute top-0 left-0 right-0 h-2"
+          style={{
+            background: "linear-gradient(135deg, var(--pink, #ff4e7c), var(--orange, #ff6b35))",
+          }}
+        />
+
         <form onSubmit={handleVerify} className="flex flex-col sm:flex-row gap-4 mb-8">
           <input
             type="text"
@@ -135,6 +146,7 @@ function ValidateContent() {
             onChange={(e) => setSearchId(e.target.value)}
             className="flex-1 bg-gray-50 border border-gray-200 text-center sm:text-left text-gray-700 font-bold px-6 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#ff6b35] transition-all"
           />
+
           <button
             type="submit"
             disabled={loading}
@@ -145,74 +157,92 @@ function ValidateContent() {
           </button>
         </form>
 
-        {/* Error State */}
         {error && (
           <div className="bg-red-50 text-red-500 font-bold p-6 rounded-2xl text-center mb-8">
             {error}
           </div>
         )}
 
-        {/* Results Area */}
-        {certificate && (() => {
-          const qrData = getParsedQrData(certificate.qrCodeData);
-          const isRevoked = certificate.status === "revoked";
+        {certificate &&
+          (() => {
+            const qrData = getParsedQrData(certificate.qrCodeData);
+            const isRevoked = certificate.status === "revoked";
 
-          return (
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              
-              {/* Dynamic Status Banner */}
-              <div 
-                className={`p-6 rounded-2xl flex items-start sm:items-center gap-4 mb-8 transition-colors ${
-                  isRevoked ? "bg-red-500/90 text-white" : "bg-[#7cdbc4] text-white"
-                }`}
-              >
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1 sm:mt-0">
-                  {isRevoked ? (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                  ) : (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            return (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div
+                  className={`p-6 rounded-2xl flex items-start sm:items-center gap-4 mb-8 transition-colors ${
+                    isRevoked ? "bg-red-500/90 text-white" : "bg-[#7cdbc4] text-white"
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                    {isRevoked ? (
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                      </svg>
+                    ) : (
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    )}
+                  </div>
+
+                  <div>
+                    <h2 className="text-xl font-bold font-display leading-tight mb-1">
+                      {isRevoked ? "Certificate Revoked!" : "Certificate Verified!"}
+                    </h2>
+                    <p className="text-white/90 text-sm font-body">
+                      {isRevoked
+                        ? "This certificate is no longer valid and has been revoked by the issuer."
+                        : "This certificate is authentic and valid."}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col">
+                  <DataRow label="Certificate ID" value={certificate.certificateId} valueColor="#ff4e7c" />
+                  <DataRow label="Participant" value={qrData.participantName || "-"} />
+                  <DataRow label="Event" value={qrData.eventName || "-"} />
+                  <DataRow
+                    label="Status"
+                    value={certificate.status}
+                    valueColor={isRevoked ? "#ef4444" : "#4b5563"}
+                  />
+                  <DataRow label="Issue Date" value={formatDate(certificate.issueDate)} />
+
+                  {isRevoked && (
+                    <>
+                      <DataRow label="Revoked At" value={formatDate(certificate.revokedAt)} valueColor="#ef4444" />
+                      <DataRow label="Revoke Reason" value={certificate.revokeReason || "No reason provided"} valueColor="#ef4444" />
+                    </>
                   )}
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold font-display leading-tight mb-1">
-                    {isRevoked ? "Certificate Revoked!" : "Certificate Verified!"}
-                  </h2>
-                  <p className="text-white/90 text-sm font-body">
-                    {isRevoked 
-                      ? "This certificate is no longer valid and has been revoked by the issuer." 
-                      : "This certificate is authentic and valid."}
-                  </p>
-                </div>
               </div>
-
-              {/* Data Table */}
-              <div className="flex flex-col">
-                <DataRow label="Certificate ID" value={certificate.certificateId} valueColor="#ff4e7c" />
-                <DataRow label="Participant" value={qrData.participantName || "-"} />
-                <DataRow label="Event" value={qrData.eventName || "-"} />
-                <DataRow 
-                  label="Status" 
-                  value={certificate.status} 
-                  valueColor={isRevoked ? "#ef4444" : "#4b5563"} 
-                />
-                <DataRow label="Issue Date" value={formatDate(certificate.issueDate)} />
-
-                {/* Conditionally render Revoked Information */}
-                {isRevoked && (
-                  <>
-                    <DataRow label="Revoked At" value={formatDate(certificate.revokedAt)} valueColor="#ef4444" />
-                    <DataRow label="Revoke Reason" value={certificate.revokeReason || "No reason provided"} valueColor="#ef4444" />
-                  </>
-                )}
-              </div>
-            </div>
-          );
-        })()}
+            );
+          })()}
       </div>
     </div>
-  );
-}
-
+  </div>
+);
 // 2. Wrap the parent page in a Suspense boundary for Next.js requirements
 export default function ValidatePage() {
   return (
