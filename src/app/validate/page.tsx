@@ -44,11 +44,27 @@ export default async function ValidatePage({
       </div>
 
       <main className="main">
-        <div className="hero">
-          <h1 className="hero-title">Verify Certificate</h1>
-          <p className="hero-subtitle">
-            Check the authenticity of your <span>certificate</span>
-          </p>
+                <div class="hero">
+            <div class="hero-icon">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 3L35 10V25C35 32 28 37 20 37C12 37 5 32 5 25V10L20 3Z"
+                          stroke="#FF6B35" stroke-width="2" fill="rgba(255,107,53,0.06)"/>
+                    <path d="M16 19V15C16 12.5 17.8 11 20 11C22.2 11 24 12.5 24 15V19"
+                          stroke="#FF6B35" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <rect x="14" y="19" width="12" height="9" rx="2" stroke="#FF6B35" stroke-width="1.5" fill="rgba(255,107,53,0.08)"/>
+                    <circle cx="20" cy="24" r="1.5" fill="#FF6B35"/>
+                </svg>
+            </div>
+            <h1 class="hero-title">Verify Certificate</h1>
+            <p class="hero-subtitle">Check the authenticity of your <span>Cyber Security Week 2026</span> certificate</p>
+        </div>
+
+        <!-- Wavy Divider -->
+        <div class="wavy">
+            <svg viewBox="0 0 140 10" fill="none">
+                <path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5"
+                      stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            </svg>
         </div>
 
         <div className="search-card">
