@@ -183,6 +183,15 @@ export default async function ValidatePage({
                     ).toLocaleDateString()}
                   </span>
                 </div>
+
+                <div className="result-field">
+                  <span className="result-field-label">
+                    Participant
+                  </span>
+                  <span className="result-field-value name" style="color:red">
+                    {result.certificate.revokeReason}
+                  </span>
+                </div>
               </div>
             </div>
           )}
