@@ -243,6 +243,8 @@ function ValidateContent() {
     </div>
   </div>
 );
+}
+
 // 2. Wrap the parent page in a Suspense boundary for Next.js requirements
 export default function ValidatePage() {
   return (
