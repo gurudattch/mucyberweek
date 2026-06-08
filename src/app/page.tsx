@@ -552,7 +552,7 @@ export default function Home() {
             <div
               className={`grid gap-6 ${
                 tier === "platinum"
-                  ? "grid-cols-1 sm:grid-cols-2"
+                  ? "grid-cols-1 sm:grid-cols-3"
                   : tier === "gold"
                   ? "grid-cols-1 sm:grid-cols-3"
                   : "grid-cols-2 sm:grid-cols-4"
