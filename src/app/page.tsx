@@ -122,7 +122,7 @@ export default function Home() {
         href="#register"
         className="btn-primary hidden md:inline-flex"
         style={{
-          padding: "10px 24px",
+          padding: "8px 24px",
           fontSize: "0.85rem",
         }}
       >
