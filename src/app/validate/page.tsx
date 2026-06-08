@@ -122,27 +122,6 @@ export default function ValidatePage() {
             certificate
           </p>
         </div>
-           <div className="certiwall-inner">
-          <div className="certiwall-co">Powered By</div>
-
-          <div className="certiwall-logo-row">
-            <div className="certiwall-name">
-              <a
-                href="https://certiwall.in"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Certi<span>wall</span>
-              </a>
-            </div>
-          </div>
-                <div class="wavy">
-            <svg viewBox="0 0 140 10" fill="none">
-                <path d="M0 5C12 1 23 9 35 5C47 1 58 9 70 5C82 1 93 9 105 5C117 1 128 9 140 5"
-                      stroke="#FF69B4" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-            </svg>
-        </div>
-
 
         <div className="search-card">
           <form onSubmit={handleSubmit} className="input-group">
